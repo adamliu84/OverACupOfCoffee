@@ -6,5 +6,5 @@ To inspire and nurture my Haskell Programming skillset – one problem, one cup 
 *If the problem is too difficult, it will be cold brew then....... ;)*
 
 # Source of problem listing
-https://leetcode.com/
-https://www.careercup.com/
+* https://leetcode.com/
+* https://www.careercup.com/
