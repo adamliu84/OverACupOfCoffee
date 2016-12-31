@@ -17,11 +17,11 @@ findAllConcatenatedWordsInADict curlist = filter (\x-> concatenatedWord x (remov
                       removedElement = flip delete curlist
 
 concatenatedWord :: String -> [String] -> Bool
-concatenatedWord [] curlist = True -- Terminate state: Remaing word got totally concatenated
+concatenatedWord [] _ = True -- Terminate state: Remaing word got totally concatenated
 concatenatedWord curword curlist
     | or ableConcatenate = or $ map (\y-> concatenatedWord y concatenableWords)
                               $ map (\x-> rep x "" curword) concatenableWords
-    | otherwise = False -- Terminate state: Unable to word from list to concatenable
+    | otherwise = False -- Terminate state: Unable to none from list to concatenable
     where ableConcatenate :: [Bool]
           ableConcatenate = map (\x->x `isInfixOf` curword) curlist
           concatenableWords :: [String]
