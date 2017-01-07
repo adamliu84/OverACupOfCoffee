@@ -1,6 +1,7 @@
 -- http://www.geeksforgeeks.org/minimum-cost-sort-strings-using-reversal-operations-different-costs/
 
 import Data.List
+import Control.Exception
 
 type ArrCost = (String, Int)
 input = [("aa",1), ("ba",3),("ac",1)]
@@ -28,4 +29,7 @@ reversal xs
 
 main :: IO ()
 main = do
-	print $ reversal input
+    result <- try (evaluate $ reversal input ) :: IO (Either SomeException Int)
+    case result of
+        Left ex  -> putStrLn $ "Output not possible. Exception:" ++ show ex
+        Right val -> putStrLn $ "The answer was: " ++ show val	
