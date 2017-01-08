@@ -19,8 +19,8 @@ exchange a@(s,c) xs = c + (reversal.exchange' $ xs)
 
 reversal :: [ArrCost] -> Int
 reversal xs
-	| isSort xs = 0
-	| otherwise =  minimum $ map (\a -> exchange a xs) (filterFstNonSort xs)
+    | isSort xs = 0
+    | otherwise =  minimum $ map (\a -> exchange a xs) (filterFstNonSort xs)
     where filterFstNonSort :: [ArrCost] -> [ArrCost]
           filterFstNonSort [] = []
           filterFstNonSort (y:ys)
@@ -32,4 +32,4 @@ main = do
     result <- try (evaluate $ reversal input ) :: IO (Either SomeException Int)
     case result of
         Left ex  -> putStrLn $ "Output not possible. Exception:" ++ show ex
-        Right val -> putStrLn $ "The answer was: " ++ show val	
+        Right val -> putStrLn $ "The answer was: " ++ show val
