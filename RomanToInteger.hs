@@ -17,23 +17,23 @@ mapAdditional cur@(Just cv) (total, (Just pv)) = case (cv `compare` pv) of
                                                    LT -> (total +++ (Just (-cv)), cur)
                                                    _ -> (total +++ cur, cur)
 
-romanToInteger :: String -> Maybe Int
-romanToInteger xs = let intmap = map (flip lookup romandec) xs
+romanToInt :: String -> Maybe Int
+romanToInt xs = let intmap = map (flip lookup romandec) xs
                     in fst $ foldr (mapAdditional) (Just 0, Just 0) intmap
 
 main = do
-    print $ romanToInteger "DCLXVI"
-    print $ romanToInteger "CMXLVIII"
-    print $ romanToInteger "MCLXXVIII"
-    print $ romanToInteger "MDCCCLXVI"
-    print $ romanToInteger "MCMLIV"
-    print $ romanToInteger "MMXI"
-    print $ romanToInteger "MCMXC"
-    print $ romanToInteger "MMXIV"
-    print $ romanToInteger "MMDCCLXXIV"
-    print $ romanToInteger "MMMCLXVII"
-    print $ romanToInteger "MMMCXCII"
+    print $ romanToInt "DCLXVI"
+    print $ romanToInt "CMXLVIII"
+    print $ romanToInt "MCLXXVIII"
+    print $ romanToInt "MDCCCLXVI"
+    print $ romanToInt "MCMLIV"
+    print $ romanToInt "MMXI"
+    print $ romanToInt "MCMXC"
+    print $ romanToInt "MMXIV"
+    print $ romanToInt "MMDCCLXXIV"
+    print $ romanToInt "MMMCLXVII"
+    print $ romanToInt "MMMCXCII"
     --Invalid entry
-    print $ romanToInteger "MM'XC"
-    print $ romanToInteger "Testing1234"
-    print $ romanToInteger "1234"
+    print $ romanToInt "MM'XC"
+    print $ romanToInt "Testing1234"
+    print $ romanToInt "1234"
