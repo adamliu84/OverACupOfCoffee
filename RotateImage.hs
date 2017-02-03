@@ -15,13 +15,13 @@ input = [[1,2,3,4],
 getValue :: [[Int]] -> (Int,Int) -> Int
 getValue m (row,col) = (m!!row)!!col
 
-getRowFromCol :: [[Int]] -> Int -> Int -> [Int]
-getRowFromCol _ _ (-1) = []
-getRowFromCol m r n = getValue m (n,r) : getRowFromCol m r (n-1)
+rotate :: [[Int]] -> [[Int]]
+rotate m = rotate' 0 m
 
-rotate :: [[Int]]->[[Int]]
-rotate matrix = map (\x-> getRowFromCol matrix x maxcol) [minrow..maxrow]
-    where (minrow, mincol,maxrow, maxcol) = (0,0,length matrix-1, length (matrix!!0) - 1)
+rotate' :: Int -> [[Int]] -> [[Int]]
+rotate' curRow m
+    | curRow > (length m -1) = []
+    | otherwise = map (\x-> getValue m (x, curRow)) (reverse [0.. (length m)-1]) : rotate' (curRow+1) m
 
 main :: IO()
 main = do
