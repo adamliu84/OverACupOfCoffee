@@ -33,7 +33,7 @@ backtrack gridListing = foldr (backtrack') 1 gridListing -- Required a minimum o
 findAllPath :: [[Int]] -> [Int] -> (Int,Int) -> [[Int]]
 findAllPath m path (currow,curcol)
     | currow == maxrow && curcol == maxcol = [path]
-    | otherwise = concat $ map (\x -> findAllPath m (path++[getValue x]) x) genNextCoord
+    | otherwise = concatMap (\x -> findAllPath m (path++[getValue x]) x) genNextCoord    
     where (maxrow,maxcol) = (length m - 1, (length (m!!0) - 1))
           genNextCoord = filter (\(r,c) -> r <= maxrow && c <= maxcol ) [(currow+1, curcol),(currow, curcol+1)]
           getValue (row,col) = ((m!!row)!!col)
