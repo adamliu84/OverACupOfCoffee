@@ -2,6 +2,12 @@
 import Data.List
 import Data.Char
 
+s1 = "3[a]2[bc]" -- "aaabcbc".
+s2 = "3[a2[c]]" -- "accaccacc".
+s3 = "2[abc]3[cd]ef" -- "abcabccdcdcdef".
+s4 = "aa2[ab3[c]]3[cd]ef" -- "aaabcccabccccdcdcdef".
+s5 = "1[a2[b3[c]]]" -- "abcccbccc"
+
 type Bucket = ([Int], [String])
 
 splitString :: Char -> String -> (String, String)
@@ -63,17 +69,17 @@ decodeStringf input = let (result,_) = foldl (\acc x-> checkCharacter acc x) (""
 
 main :: IO ()
 main = do
-    print $ decodeString "3[a]2[bc]" -- "aaabcbc".
-    print $ decodeString "3[a2[c]]" -- "accaccacc".
-    print $ decodeString "2[abc]3[cd]ef" -- "abcabccdcdcdef".
-    print $ decodeString "aa2[ab3[c]]3[cd]ef" -- "aaabcccabccccdcdcdef".
-    print $ decodeString "1[a2[b3[c]]]" -- "abcccbccc"
+    print $ decodeString s1
+    print $ decodeString s2
+    print $ decodeString s3
+    print $ decodeString s4
+    print $ decodeString s5
     {-
     Folding method ↓
     -}
     print $ "Folding"
-    print $ decodeStringf "3[a]2[bc]" -- "aaabcbc".
-    print $ decodeStringf "3[a2[c]]" -- "accaccacc".
-    print $ decodeStringf "2[abc]3[cd]ef" -- "abcabccdcdcdef".
-    print $ decodeStringf "aa2[ab3[c]]3[cd]ef" -- "aaabcccabccccdcdcdef".
-    print $ decodeStringf "1[a2[b3[c]]]" -- "abcccbccc"
+    print $ decodeStringf s1
+    print $ decodeStringf s2
+    print $ decodeStringf s3
+    print $ decodeStringf s4
+    print $ decodeStringf s5
