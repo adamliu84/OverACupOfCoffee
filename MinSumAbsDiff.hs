@@ -1,3 +1,4 @@
+-- http://www.geeksforgeeks.org/minimum-sum-absolute-difference-pairs-two-arrays/
 import Data.List
 
 findMinSumAbsDiff :: [Int] -> [Int] -> Int
