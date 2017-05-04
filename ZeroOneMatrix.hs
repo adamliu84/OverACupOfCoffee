@@ -54,5 +54,5 @@ main = do
     mapM_ genPrint result
     where genPrint :: (Matrix, Matrix) -> IO ()
           genPrint (m, m') = print "Input" >> mapM_ print m >>
-                            print "Output" >> mapM_ print m' >>
-                            print "------"
+                             print "Output" >> mapM_ print m' >>
+                             print "------"
