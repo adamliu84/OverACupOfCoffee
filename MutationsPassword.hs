@@ -1,7 +1,7 @@
 -- https://www.careercup.com/question?id=5730743486513152
 
 mapping :: [(Char, String)]
-mapping = [('p',"$P"), ('a',"A"), ('s',"/$&")]
+mapping = [('p',"$P"), ('a',"A"), ('s',"/S&")]
 
 genMutation :: String -> [String]
 genMutation [] = [[]]
