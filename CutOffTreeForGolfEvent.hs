@@ -123,3 +123,21 @@ cutOffTree t = walkToDest t (0,0) (getTreeOrderCoord t)
 main :: IO ()
 main = do
     mapM_ (print.cutOffTree) [input1, input2, input3, input4, input5, input6]
+    mapM_ (print.burnItToGround) [input1, input2, input3, input4, input5, input6]
+
+{-|
+Why cut, when you can burn!
+-}
+
+hellFire :: Int
+hellFire = -999
+
+burnItToGround :: Tree -> Tree
+burnItToGround t = burn t (0,0) []
+
+burn :: Tree -> Coordinate -> [Int] -> Tree
+burn t (row, col) curBank
+    | row > maxrow = []
+    | col > maxcol = curBank : burn t (row+1,0) []
+    | otherwise =  burn t (row,col+1) (curBank++[hellFire])
+    where (maxrow, maxcol) = ((length t-1),(length (t!!0)-1))
