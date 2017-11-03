@@ -1,6 +1,8 @@
 -- https://leetcode.com/problems/range-module/description/
 
 type Range = (Int, Int)
+type RangeAddRemoveOperation = Range -> [Range] -> [Range]
+type RangeQueryOperation = Range -> [Range] -> Bool
 data Operation = Add Range | Remove Range | Query Range
 
 addSort :: [Range] -> [Range]
@@ -9,7 +11,7 @@ addSort o@((xl,xr) : (yl,yr):yy)
     | xr < yl = o
     | otherwise = addSort ((xl, max xr yr) : yy)
 
-addRange :: Range -> [Range] -> [Range]
+addRange :: RangeAddRemoveOperation
 addRange a [] = [a]
 addRange aa@(al, ar) xx@((xl, xr) : xs)
     | ar < xl = aa : xx
@@ -18,7 +20,7 @@ addRange aa@(al, ar) xx@((xl, xr) : xs)
     | al <= xl && ar <= xr = (al, xr) : xs
     | otherwise = addSort $ ((min al xl), (max ar xr)) : xs
 
-removeRange :: Range -> [Range] -> [Range]
+removeRange :: RangeAddRemoveOperation
 removeRange _ [] = []
 removeRange aa@(al, ar) xx@((xl, xr) : xs)
     | ar < xl = xx
@@ -28,7 +30,7 @@ removeRange aa@(al, ar) xx@((xl, xr) : xs)
     | al > xl && ar < xr = (xl, al) : (ar, xr) : xs
     | otherwise = (xl, al) : removeRange aa xs
 
-queryRange :: Range -> [Range] -> Bool
+queryRange :: RangeQueryOperation
 queryRange _ [] = False
 queryRange aa@(al,ar) xx@((xl,xr) : xs)
     | ar < xl = False
