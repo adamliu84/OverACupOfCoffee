@@ -13,14 +13,11 @@ turnWheel n s = map (\x -> nh ++ [x] ++ nt) [d,i]
           wrapCase x = fromJust (lookup x wrapNumber)
 
 checkLock :: [String] -> String -> [String] -> [String] -> Int -> Int
-checkLock deadends target travelledCombination checkCombination counter =
-    if (length newCombination == 0) then
-        (-1)
-    else
-        if (target `elem` newCombination) then
-           counter
-        else
-           checkLock deadends target newTravelledCombination newCombination (counter + 1)
+checkLock deadends target travelledCombination checkCombination counter
+    | length newCombination == 0 = -1
+    | target `elem` newCombination = counter
+    | otherwise =
+        checkLock deadends target newTravelledCombination newCombination (succ counter)
     where newCombination = filter (\x -> not $ x `elem` travelledCombination) $
                            nub $
                            (checkCombination \\ deadends) >>= \q ->
@@ -31,7 +28,7 @@ openLock :: [String] -> String -> Int
 openLock deadends target = checkLock deadends target [] ["0000"] 1
 
 main :: IO ()
-main = do    
+main = do
     print $ openLock ["0201","0101","0102","1212","2002"] "0202"
     print $ openLock ["8888"] "0009"
     print $ openLock ["8887","8889","8878","8898","8788","8988","7888","9888"] "8888"
