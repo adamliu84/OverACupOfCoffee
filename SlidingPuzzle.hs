@@ -1,5 +1,6 @@
 
 -- https://leetcode.com/problems/sliding-puzzle/
+module SlidingPuzzle where
 
 import Data.List
 
