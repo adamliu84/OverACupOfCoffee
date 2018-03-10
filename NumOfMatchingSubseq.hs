@@ -17,6 +17,7 @@ numMatchingSubseq s words = countValid (getCharCount s) (map getCharCount words)
           compareValid bank ((c,c'):ws) = case (lookup c bank) of
                                           Just v -> if (c' <= v) then compareValid bank ws else 0
                                           Nothing -> 0
+
 main :: IO ()
 main =
     print $ numMatchingSubseq "abcde" ["a", "bb", "acd", "ace"]
