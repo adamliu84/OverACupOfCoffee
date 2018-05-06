@@ -2,9 +2,6 @@
 
 import Data.List
 
-inits' :: [Int] -> [[Int]]
-inits' xs = tail $ inits xs
-
 consecutiveNumbersSum :: Int -> Int
 consecutiveNumbersSum n = con 1 n
     where con :: Int -> Int -> Int
