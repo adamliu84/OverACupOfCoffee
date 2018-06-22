@@ -1,3 +1,5 @@
+-- https://leetcode.com/problems/maximize-distance-to-closest-person/
+
 countEmptyDist :: [Int] -> [Int] -> Int
 countEmptyDist h t
     | length h == 0 = fn t
