@@ -1,5 +1,4 @@
 -- https://leetcode.com/problems/advantage-shuffle/
-
 import Data.List
 
 advantageCount :: [Int] -> [Int] -> [Int]
